@@ -8,12 +8,13 @@ import org.junit.runner.RunWith;
 
     @RunWith(Cucumber.class)
     @CucumberOptions(
-            features = "src/test/java/features/checkLogin.feature",
+            features = "src/test/java/features/checkTitleNavigator.feature",
             glue = "step_definitions",
             tags = "@withdrawal",
-            snippets = SnippetType.CAMELCASE
+            snippets = SnippetType.CAMELCASE,
+            plugin = {"html:target/cucumber-html-report"}
     )
     public class RunnerTest {
-        
+
     }
 

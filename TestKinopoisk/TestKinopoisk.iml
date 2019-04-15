@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -58,5 +58,13 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: io.cucumber:datatable:1.1.12" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: io.cucumber:datatable-dependencies:1.1.12" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: io.cucumber:cucumber-java:4.2.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: ru.yandex.qatools.allure:allure-junit-adaptor:1.5.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: ru.yandex.qatools.allure:allure-java-aspects:1.5.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: ru.yandex.qatools.allure:allure-java-adaptor-api:1.5.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: ru.yandex.qatools.allure:allure-java-annotations:1.5.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: ru.yandex.qatools.allure:allure-model:1.5.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jvnet.jaxb2_commons:jaxb2-basics-runtime:0.9.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: ru.qatools.commons:properties:2.0.RC5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.aspectj:aspectjrt:1.8.3" level="project" />
   </component>
 </module>

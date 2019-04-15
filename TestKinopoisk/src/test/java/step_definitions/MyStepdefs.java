@@ -5,12 +5,16 @@ import cucumber.api.java.ru.Дано;
 import cucumber.api.java.ru.Тогда;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.Login;
 import pages.MainPage;
 import utils.ChromeDriverUtil;
 import java.util.concurrent.TimeUnit;
+
+import static pages.MainPage.provTitle;
+
 public class MyStepdefs {
     public static WebDriver driver;
 
@@ -20,6 +24,9 @@ public class MyStepdefs {
         driver = ChromeDriverUtil.startCromeDriver();
         driver.get(arg1);
     }
+
+
+
 
     @Тогда("^проверяем пользователя$")
     public void проверяемПользователя() throws Throwable {
@@ -35,14 +42,42 @@ public class MyStepdefs {
     }
 
 
-    @Тогда("^Проверим тайтл$")
-    public void проверимТайтл() throws Throwable {
-
-        String element = driver.findElement(By.xpath("//head/title")).getText();
-        if (element.equals("Кино в Москве: билеты и расписание сеансов — КиноПоиск")) {
-            System.out.println("ok");
-        }
+    @Тогда("^перехоим в разддел навгатор фильмов$")
+    public void перехоимВРаздделНавгаторФильмов() throws Throwable {
+        MainPage mainPage = new MainPage();
+        Actions action = new Actions(driver);
+        WebElement element = (new WebDriverWait(driver, 1, 1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//nav//a[.='Фильмы']")));
+        action.moveToElement(element).build().perform();
+        System.out.println("44");
+        element = (new WebDriverWait(driver, 1, 1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='Навигатор по фильмам']")));
+        element.click();
     }
+
+
+    @Тогда("^проверим тайтл \"([^\"]*)\"$")
+    public void проверимТайтл(String arg1) throws Throwable {
+        (new WebDriverWait(driver, 5, 1000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//head/title")));
+        String element = driver.getTitle();
+        System.out.println(element);
+        provTitle(element,arg1);
+    }
+
+
+
+
+
+//старая версия проверки тайтла
+//    @Тогда("^Проверим тайтл Главная$")
+//    public void проверимТайтлГлавная() throws Throwable {
+//        (new WebDriverWait(driver, 5, 1000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//head/title")));
+//        String element = driver.getTitle();
+//        System.out.println(element);
+//        provTitle(element,"КиноПоиск — Все фильмы планеты");
+//    }
+
+
+
+
 
     @Тогда("^логинимся на кинопоиске$")
     @Step("логинимся на кинопоиске")
