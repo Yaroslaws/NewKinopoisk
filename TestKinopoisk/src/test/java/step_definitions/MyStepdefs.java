@@ -42,8 +42,8 @@ public class MyStepdefs {
     }
 
 
-    @“огда("^перехоим в разддел навгатор фильмов$")
-    public void перехоим¬–аздделЌавгатор‘ильмов() throws Throwable {
+    @“огда("^перехоим в разддел навигатор фильмов$")
+    public void перехоим¬–аздделЌавигатор‘ильмов() throws Throwable {
         MainPage mainPage = new MainPage();
         Actions action = new Actions(driver);
         WebElement element = (new WebDriverWait(driver, 1, 1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//nav//a[.='‘ильмы']")));
