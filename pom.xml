@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>TestKinopoisk</groupId>
+    <artifactId>TestKinopoisk</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+
+    <properties>
+        <aspectj.version>1.8.10</aspectj.version>
+    </properties>
+
+    <dependencies>
+
+        <!--//junit-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+
+       <!--//Cucumber-->
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>1.2.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>1.2.4</version>
+            <scope>test</scope>
+        </dependency>
+
+      <!--//Selenium-->
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.14.0</version>
+        </dependency>
+
+
+      <!--//allure-->
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-cucumber4-jvm</artifactId>
+                <version>2.10.0</version>
+            </dependency>
+
+    </dependencies>
+
+    <!--<build>-->
+    <!--<plugins>-->
+        <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-surefire-plugin</artifactId>-->
+            <!--<version>2.20</version>-->
+            <!--<configuration>-->
+                <!--<argLine>-->
+                     <!-- -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"-->
+                     <!-- -Dcucumber.options="&#45;&#45;plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"-->
+                <!--</argLine>-->
+            <!--</configuration>-->
+            <!--<dependencies>-->
+                <!--<dependency>-->
+                    <!--<groupId>org.aspectj</groupId>-->
+                    <!--<artifactId>aspectjweaver</artifactId>-->
+                    <!--<version>${aspectj.version}</version>-->
+                <!--</dependency>-->
+            <!--</dependencies>-->
+        <!--</plugin>-->
+    <!--</plugins>-->
+<!--</build>-->
+
+</project>
