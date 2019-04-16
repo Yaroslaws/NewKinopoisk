@@ -8,10 +8,18 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.Login;
+import java.pages.Login;
+
+import pages.FilmsRating;
 import pages.MainPage;
+import pages.SearchFilms;
 import utils.ChromeDriverUtil;
+
+
 import java.util.concurrent.TimeUnit;
+import utils.WaitElementUtill;
+
+
 
 import static pages.MainPage.provTitle;
 
@@ -28,6 +36,14 @@ public class MyStepdefs {
 
 
 
+    @“огда("^ищем фильм сн€тый в \"([^\"]*)\" с \"([^\"]*)\" по \"([^\"]*)\" рейтинг \"([^\"]*)\" ibm \"([^\"]*)\" рейтинг критиков \"([^\"]*)\" положительных рецензий от \"([^\"]*)\" до \"([^\"]*)\"$")
+    public void ищем‘ильм—н€тый¬—ѕо–ейтингIbm–ейтинг ритиковѕоложительных–ецензийќтƒо(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        WaitElementUtill.waitElement(driver, FilmsRating.contry);
+        WaitElementUtill.selectElement(driver, arg1);
+    }
+
+
     @“огда("^провер€ем пользовател€$")
     public void провер€емѕользовател€() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
@@ -42,6 +58,28 @@ public class MyStepdefs {
     }
 
 
+    @“огда("^ищем \"([^\"]*)\" сн€тый \"([^\"]*)\" с \"([^\"]*)\" по \"([^\"]*)\"$")
+    public void ищем—н€тый—ѕо(String arg1, String arg2, String arg3, String arg4) throws Throwable {
+        WebElement element = (new WebDriverWait(driver,1,1000))
+                .until(ExpectedConditions.elementToBeClickable(SearchFilms.contentFind));
+        element.click();
+        WaitElementUtill.waitElement(driver,SearchFilms.selected);
+        WaitElementUtill.selectElement(driver, "фильм");
+        WaitElementUtill.waitElement(driver,SearchFilms.country);
+        WaitElementUtill.selectElement(driver, "—Ўј");
+        WaitElementUtill.waitElement(driver,SearchFilms.fromYear);
+        WaitElementUtill.selectElement(driver, "2000");
+        WaitElementUtill.waitElement(driver,SearchFilms.toYear);
+        WaitElementUtill.selectElement(driver, "1998");
+        WaitElementUtill.waitElement(driver,SearchFilms.buttonSearch);
+
+
+
+
+
+    }
+
+
     @“огда("^перехоим в разддел навигатор фильмов$")
     public void перехоим¬–аздделЌавигатор‘ильмов() throws Throwable {
         MainPage mainPage = new MainPage();
@@ -52,6 +90,14 @@ public class MyStepdefs {
         element = (new WebDriverWait(driver, 1, 1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='Ќавигатор по фильмам']")));
         element.click();
     }
+
+    @“огда("^открываем расширенный поиск$")
+    public void открывае–асширенныйѕоиск() throws Throwable {
+        MainPage mainPage = new MainPage();
+        WebElement element = (new WebDriverWait(driver, 5, 1000)).until(ExpectedConditions.presenceOfElementLocated(MainPage.searchFilms));
+        element.click();
+    }
+
 
 
     @“огда("^проверим тайтл \"([^\"]*)\"$")

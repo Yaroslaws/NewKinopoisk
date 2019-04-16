@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 
     @RunWith(Cucumber.class)
     @CucumberOptions(
-            features = "src/test/java/features/searchFIlms.feature",
+            features = "src/test/java/features/searchFilmsRating.feature",
             glue = "step_definitions",
             tags = "@withdrawal",
             snippets = SnippetType.CAMELCASE,
