@@ -8,7 +8,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.pages.Login;
+import pages.Login;
 
 import pages.FilmsRating;
 import pages.MainPage;
@@ -36,12 +36,46 @@ public class MyStepdefs {
 
 
 
-    @“огда("^ищем фильм сн€тый в \"([^\"]*)\" с \"([^\"]*)\" по \"([^\"]*)\" рейтинг \"([^\"]*)\" ibm \"([^\"]*)\" рейтинг критиков \"([^\"]*)\" положительных рецензий от \"([^\"]*)\" до \"([^\"]*)\"$")
-    public void ищем‘ильм—н€тый¬—ѕо–ейтингIbm–ейтинг ритиковѕоложительных–ецензийќтƒо(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        WaitElementUtill.waitElement(driver, FilmsRating.contry);
-        WaitElementUtill.selectElement(driver, arg1);
+    @“огда("^ищем комедии сн€тые в \"([^\"]*)\" с \"([^\"]*)\" по \"([^\"]*)\" рейтинг \"([^\"]*)\" ibm \"([^\"]*)\" рейтинг критиков \"([^\"]*)\" положительных рецензий от \"([^\"]*)\" до \"([^\"]*)\" Ѕюджет фильма от \"([^\"]*)\" до \"([^\"]*)\" миллионов \\$\\.  ассовые сборы от \"([^\"]*)\" млн \\$ в —Ўј$")
+    public void ищем омедии—н€тые¬—ѕо–ейтингIbm–ейтинг ритиковѕоложительных–ецензийќтƒоЅюджет‘ильмаќтƒоћиллионов$ ассовые—борыќтћлн$¬—Ўј(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8, String arg9, String arg10, String arg11) throws Throwable{
+        WaitElementUtill.waitElement(driver, FilmsRating.country);
+        WaitElementUtill.countryList(driver, arg1);
+        WaitElementUtill.waitElement(driver, FilmsRating.genre);
+        WaitElementUtill.genreList(driver, "комеди€");
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("var get = document.getElementsByClassName('narrow year_select_interval');\n" +
+                "get[0].value = \"1998\";\n" +
+                "get[1].value = \"2000\";\n");
+        WaitElementUtill.sendKeys(driver, FilmsRating.ratingFilmMin,arg4);
+        WaitElementUtill.sendKeys(driver, FilmsRating.IMDbMin,arg5);
+        WaitElementUtill.sendKeys(driver, FilmsRating.movie—riticMin,arg6);
+        WaitElementUtill.sendKeys(driver, FilmsRating.revieProcentMax,arg8);
+        WaitElementUtill.sendKeys(driver, FilmsRating.revieProcentMin,arg7);
+        js.executeScript("var get = document.getElementById('min_vote');\n" +
+                "get.value =\"2000\";");
+        WaitElementUtill.waitElement(driver,FilmsRating.budgetMin);
+        WaitElementUtill.selectElement(driver,arg9);
+        js.executeScript("var get = document.getElementsByClassName('narrow');\n" +
+                " get[3].value = '100';"+
+                "get[4].value = '25';");
+
+
+        WaitElementUtill.waitElement(driver,FilmsRating.searchButton);
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     @“огда("^провер€ем пользовател€$")
