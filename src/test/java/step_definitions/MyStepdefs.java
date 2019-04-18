@@ -5,6 +5,7 @@ import cucumber.api.java.ru.ƒано;
 import cucumber.api.java.ru.“о;
 import cucumber.api.java.ru.“огда;
 import io.qameta.allure.Step;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -39,13 +40,47 @@ public class MyStepdefs {
 
     @“о("^ѕроверить, что в результатах поиска отображен массив фильмов сн€тых в \"([^\"]*)\" в жанре \"([^\"]*)\" с рейтингом  более \"([^\"]*)\"  и рейтингом IMDb более \"([^\"]*)\"$")
     public void проверить„то¬–езультатахѕоискаќтображенћассив‘ильмов—н€тых¬¬∆анре—–ейтингомЅолее»–ейтингомIMDbЅолее(String arg1, String arg2, String arg3, String arg4) throws Throwable {
-        By country = By.xpath("//div[@id = 'itemList']//div[@class = 'info']/span[@class = 'gray_text'][1]");
+        By info = By.xpath("//div[@id = 'itemList']/div[4]//div[@class = 'info']/span[@class = 'gray_text'][1]");
+        By reating = By.xpath("//div[@id = 'itemList']//div[@class = 'numVote  ratingGreenBG']/span");
+        By imdb = By.xpath("//div[@id = 'itemList']//div[@class = 'imdb']");
+        int i=1;
+        while(i<5) {
 
+            String infoFilm = (new WebDriverWait(driver, 4, 1000))
+                    .until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id = 'itemList']/div["+i+"]//div[@class = 'info']/span[@class = 'gray_text'][1]"))).getText();
+            String infoReating = (new WebDriverWait(driver, 4, 1000))
+                    .until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id = 'itemList']/div["+i+"]/div[@class = 'numVote  ratingGreenBG']/span"))).getText();
+            String infoImdb = (new WebDriverWait(driver, 4, 1000))
+                    .until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id = 'itemList']/div["+i+"]//div[@class= 'imdb']"))).getText();
 
-        String strCountry =  (new WebDriverWait(driver, 4, 1000)).until(ExpectedConditions.elementToBeClickable(country)).getText();
+            //правило regexp на введенные данные
+            String regex1 =arg1;
+            String regex2 = arg2;
+            String regex3 = "[^.]*";
+            String regex4 = "[0-9]";
 
-        System.out.println(strCountry);
+            int num;
+            Matcher matcher1 = Pattern.compile(regex1).matcher(infoFilm);
+            Matcher matcher2 = Pattern.compile(regex2).matcher(infoFilm);
+            Matcher matcher3 = Pattern.compile(regex3).matcher(infoReating);
+            Matcher matcher4 = Pattern.compile(regex4).matcher(infoImdb);
 
+            //проверка введенных аргументов
+            assertEquals(matcher1.find(), true);
+            assertEquals(matcher2.find(), true);
+
+            if (matcher3.find()) {
+                num = Integer.parseInt(matcher3.group());
+                if(num >= 7)
+                    assertEquals(true, true);
+            }
+           if (matcher4.find()) {
+               num = Integer.parseInt(matcher4.group());
+               if(num >= 7)
+                   assertEquals(true, true);
+           }
+            i++;
+        }
     }
 
 
