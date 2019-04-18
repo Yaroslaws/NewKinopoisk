@@ -17,6 +17,8 @@ public class FilmsRating {
     public static By budgetMin = By.xpath("//select[contains(@name,'[budget][min]')]");
     public static By budgetMax = By.xpath("//select[contains(@name,'[budget][max]')]");
     public static By grossMin = By.xpath("//select[contains(@name,'[gross][min]')]");
+    public static By showFilmButton = By.xpath("//input[@value = 'показать фильмы']");
+
 
 
 

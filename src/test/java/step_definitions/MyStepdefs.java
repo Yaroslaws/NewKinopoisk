@@ -2,6 +2,7 @@ package step_definitions;
 
 
 import cucumber.api.java.ru.ƒано;
+import cucumber.api.java.ru.“о;
 import cucumber.api.java.ru.“огда;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
@@ -17,10 +18,13 @@ import utils.ChromeDriverUtil;
 
 
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import utils.WaitElementUtill;
 
 
-
+import static org.junit.Assert.assertEquals;
 import static pages.MainPage.provTitle;
 
 public class MyStepdefs {
@@ -31,6 +35,26 @@ public class MyStepdefs {
     public void пользовательќткрывает—айт(String arg1) throws Throwable {
         driver = ChromeDriverUtil.startCromeDriver();
         driver.get(arg1);
+    }
+
+    @“о("^ѕроверить, что в результатах поиска отображен массив фильмов сн€тых в \"([^\"]*)\" в жанре \"([^\"]*)\" с рейтингом  более \"([^\"]*)\"  и рейтингом IMDb более \"([^\"]*)\"$")
+    public void проверить„то¬–езультатахѕоискаќтображенћассив‘ильмов—н€тых¬¬∆анре—–ейтингомЅолее»–ейтингомIMDbЅолее(String arg1, String arg2, String arg3, String arg4) throws Throwable {
+        By country = By.xpath("//div[@id = 'itemList']//div[@class = 'info']/span[@class = 'gray_text'][1]");
+
+
+        String strCountry =  (new WebDriverWait(driver, 4, 1000)).until(ExpectedConditions.elementToBeClickable(country)).getText();
+
+        System.out.println(strCountry);
+
+    }
+
+
+
+    @“огда("^Ќажать кнопку Ђпоказать фильмыї$")
+    public void нажать нопкуѕоказать‘ильмы() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        WaitElementUtill.waitElement(driver, FilmsRating.showFilmButton);
+
     }
 
 
@@ -60,22 +84,26 @@ public class MyStepdefs {
                 " get[3].value = '100';"+
                 "get[4].value = '25';");
 
-
-        WaitElementUtill.waitElement(driver,FilmsRating.searchButton);
+//потом использую
+//        WaitElementUtill.waitElement(driver,FilmsRating.searchButton);
 
     }
 
 
+    @“огда("^ѕроверка на количество фильмов \"([^\"]*)\"$")
+    public void проверкаЌа оличество‘ильмов(String arg1) throws Throwable {
 
-
-
-
-
-
-
-
-
-
+        WebElement  element = (new WebDriverWait(driver, 4, 1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@onclick,'navigator.loadResult()')]")));
+        String str = element.getText();
+        String regex ="(\\d+)";
+        String num = null;
+        Matcher matcher = Pattern.compile(regex).matcher(str);
+        while (matcher.find( ))
+        {
+            num = matcher.group();
+        }
+        assertEquals(num, arg1);
+    }
 
 
     @“огда("^провер€ем пользовател€$")
@@ -120,7 +148,6 @@ public class MyStepdefs {
         Actions action = new Actions(driver);
         WebElement element = (new WebDriverWait(driver, 1, 1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//nav//a[.='‘ильмы']")));
         action.moveToElement(element).build().perform();
-        System.out.println("44");
         element = (new WebDriverWait(driver, 1, 1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='Ќавигатор по фильмам']")));
         element.click();
     }
