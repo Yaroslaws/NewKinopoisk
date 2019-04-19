@@ -38,6 +38,23 @@ public class MyStepdefs {
         driver.get(arg1);
     }
 
+    @“огда("^выход из аккаунта$")
+    public void выход»зјккаунта() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        driver.get("https://www.kinopoisk.ru/");
+        Boolean isPresent = driver.findElements(MainPage.buttonEntrance).size() > 0;
+        if(isPresent){
+            System.out.println("Ќе нужно выходить");
+        }
+        else
+        {
+            WaitElementUtill.waitElement(driver,MainPage.avatar);
+            WaitElementUtill.waitElement(driver,MainPage.buttonExit);
+        }
+
+
+    }
+
     @“о("^ѕроверить, что в результатах поиска отображен массив фильмов сн€тых в \"([^\"]*)\" в жанре \"([^\"]*)\" с рейтингом  более \"([^\"]*)\"  и рейтингом IMDb более \"([^\"]*)\"$")
     public void проверить„то¬–езультатахѕоискаќтображенћассив‘ильмов—н€тых¬¬∆анре—–ейтингомЅолее»–ейтингомIMDbЅолее(String arg1, String arg2, String arg3, String arg4) throws Throwable {
         By info = By.xpath("//div[@id = 'itemList']/div[4]//div[@class = 'info']/span[@class = 'gray_text'][1]");
@@ -150,7 +167,7 @@ public class MyStepdefs {
         element.click();
         text = driver.findElement(mainPage.userName).getText();
         if(text.equals("senckoya")){
-            System.out.println("ok");
+            System.out.println("ѕользователь вошел");
         }
     }
 
