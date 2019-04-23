@@ -1,13 +1,19 @@
 package step_definitions;
 
 
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.ru.Дано;
 import cucumber.api.java.ru.То;
 import cucumber.api.java.ru.Тогда;
+import hooks.Hooks;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import pages.Login;
 
 import pages.FilmsRating;
@@ -24,11 +30,28 @@ import java.util.regex.Pattern;
 import utils.WaitElementUtill;
 
 
-import static org.junit.Assert.assertEquals;
+
 import static pages.MainPage.provTitle;
 
-public class MyStepdefs {
+public class MyStepdefs extends Hooks {
     public static WebDriver driver;
+
+    @Before("@withdrawal")
+    public void prepareData() {
+        //подготовить данные
+        System.out.println("This will run");
+    }
+
+    @After("@withdrawal")
+    public void clearData(Scenario scenario) {
+        if(scenario.isFailed())
+        {
+            //TAKE SCREENSHOT
+            System.out.println("Nope");
+        }
+
+        driver.close();
+    }
 
 
     @Дано("^пользователь открывает сайт \"([^\"]*)\"$")
@@ -82,18 +105,18 @@ public class MyStepdefs {
             Matcher matcher4 = Pattern.compile(regex4).matcher(infoImdb);
 
             //проверка введенных аргументов
-            assertEquals(matcher1.find(), true);
-            assertEquals(matcher2.find(), true);
+            Assert.assertEquals(matcher1.find(), true);
+            Assert.assertEquals(matcher2.find(), true);
 
             if (matcher3.find()) {
                 num = Integer.parseInt(matcher3.group());
                 if(num >= 7)
-                    assertEquals(true, true);
+                    Assert.assertEquals(true, true);
             }
            if (matcher4.find()) {
                num = Integer.parseInt(matcher4.group());
                if(num >= 7)
-                   assertEquals(true, true);
+                   Assert.assertEquals(true, true);
            }
             i++;
         }
@@ -151,7 +174,7 @@ public class MyStepdefs {
         {
             num = matcher.group();
         }
-        assertEquals(num, arg1);
+        Assert.assertEquals(num, arg1);
     }
 
 
