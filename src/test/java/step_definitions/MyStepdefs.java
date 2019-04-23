@@ -1,11 +1,9 @@
 package step_definitions;
 
 
-import cucumber.api.java.ru.Дано;
-import cucumber.api.java.ru.То;
-import cucumber.api.java.ru.Тогда;
-import io.qameta.allure.Step;
-import org.junit.Assert;
+import cucumber.api.java.ru.Р”Р°РЅРѕ;
+import cucumber.api.java.ru.РўРѕ;
+import cucumber.api.java.ru.РўРѕРіРґР°;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +13,7 @@ import pages.Login;
 import pages.FilmsRating;
 import pages.MainPage;
 import pages.SearchFilms;
+import ru.yandex.qatools.allure.annotations.Step;
 import utils.ChromeDriverUtil;
 
 
@@ -32,19 +31,19 @@ public class MyStepdefs {
     public static WebDriver driver;
 
 
-    @Дано("^пользователь открывает сайт \"([^\"]*)\"$")
-    public void пользовательОткрываетСайт(String arg1) throws Throwable {
+    @Р”Р°РЅРѕ("^РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РѕС‚РєСЂС‹РІР°РµС‚ СЃР°Р№С‚ \"([^\"]*)\"$")
+    public void РїРѕР»СЊР·РѕРІР°С‚РµР»СЊРћС‚РєСЂС‹РІР°РµС‚РЎР°Р№С‚(String arg1) throws Throwable {
         driver = ChromeDriverUtil.startCromeDriver();
         driver.get(arg1);
     }
 
-    @Тогда("^выход из аккаунта$")
-    public void выходИзАккаунта() throws Throwable {
+    @РўРѕРіРґР°("^РІС‹С…РѕРґ РёР· Р°РєРєР°СѓРЅС‚Р°$")
+    public void РІС‹С…РѕРґРР·РђРєРєР°СѓРЅС‚Р°() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         driver.get("https://www.kinopoisk.ru/");
         Boolean isPresent = driver.findElements(MainPage.buttonEntrance).size() > 0;
         if(isPresent){
-            System.out.println("Не нужно выходить");
+            System.out.println("РќРµ РЅСѓР¶РЅРѕ РІС‹С…РѕРґРёС‚СЊ");
         }
         else
         {
@@ -55,8 +54,8 @@ public class MyStepdefs {
 
     }
 
-    @То("^Проверить, что в результатах поиска отображен массив фильмов снятых в \"([^\"]*)\" в жанре \"([^\"]*)\" с рейтингом  более \"([^\"]*)\"  и рейтингом IMDb более \"([^\"]*)\"$")
-    public void проверитьЧтоВРезультатахПоискаОтображенМассивФильмовСнятыхВВЖанреСРейтингомБолееИРейтингомIMDbБолее(String arg1, String arg2, String arg3, String arg4) throws Throwable {
+    @РўРѕ("^РџСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ РІ СЂРµР·СѓР»СЊС‚Р°С‚Р°С… РїРѕРёСЃРєР° РѕС‚РѕР±СЂР°Р¶РµРЅ РјР°СЃСЃРёРІ С„РёР»СЊРјРѕРІ СЃРЅСЏС‚С‹С… РІ \"([^\"]*)\" РІ Р¶Р°РЅСЂРµ \"([^\"]*)\" СЃ СЂРµР№С‚РёРЅРіРѕРј  Р±РѕР»РµРµ \"([^\"]*)\"  Рё СЂРµР№С‚РёРЅРіРѕРј IMDb Р±РѕР»РµРµ \"([^\"]*)\"$")
+    public void РїСЂРѕРІРµСЂРёС‚СЊР§С‚РѕР’Р РµР·СѓР»СЊС‚Р°С‚Р°С…РџРѕРёСЃРєР°РћС‚РѕР±СЂР°Р¶РµРЅРњР°СЃСЃРёРІР¤РёР»СЊРјРѕРІРЎРЅСЏС‚С‹С…Р’Р’Р–Р°РЅСЂРµРЎР РµР№С‚РёРЅРіРѕРјР‘РѕР»РµРµРР РµР№С‚РёРЅРіРѕРјIMDbР‘РѕР»РµРµ(String arg1, String arg2, String arg3, String arg4) throws Throwable {
         By info = By.xpath("//div[@id = 'itemList']/div[4]//div[@class = 'info']/span[@class = 'gray_text'][1]");
         By reating = By.xpath("//div[@id = 'itemList']//div[@class = 'numVote  ratingGreenBG']/span");
         By imdb = By.xpath("//div[@id = 'itemList']//div[@class = 'imdb']");
@@ -70,7 +69,7 @@ public class MyStepdefs {
             String infoImdb = (new WebDriverWait(driver, 4, 1000))
                     .until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id = 'itemList']/div["+i+"]//div[@class= 'imdb']"))).getText();
 
-            //правило regexp на введенные данные
+            //РїСЂР°РІРёР»Рѕ regexp РЅР° РІРІРµРґРµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ
             String regex1 =arg1;
             String regex2 = arg2;
             String regex3 = "[^.]*";
@@ -82,7 +81,7 @@ public class MyStepdefs {
             Matcher matcher3 = Pattern.compile(regex3).matcher(infoReating);
             Matcher matcher4 = Pattern.compile(regex4).matcher(infoImdb);
 
-            //проверка введенных аргументов
+            //РїСЂРѕРІРµСЂРєР° РІРІРµРґРµРЅРЅС‹С… Р°СЂРіСѓРјРµРЅС‚РѕРІ
             assertEquals(matcher1.find(), true);
             assertEquals(matcher2.find(), true);
 
@@ -102,8 +101,8 @@ public class MyStepdefs {
 
 
 
-    @Тогда("^Нажать кнопку «показать фильмы»$")
-    public void нажатьКнопкуПоказатьФильмы() throws Throwable {
+    @РўРѕРіРґР°("^РќР°Р¶Р°С‚СЊ РєРЅРѕРїРєСѓ В«РїРѕРєР°Р·Р°С‚СЊ С„РёР»СЊРјС‹В»$")
+    public void РЅР°Р¶Р°С‚СЊРљРЅРѕРїРєСѓРџРѕРєР°Р·Р°С‚СЊР¤РёР»СЊРјС‹() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         WaitElementUtill.waitElement(driver, FilmsRating.showFilmButton);
 
@@ -112,12 +111,12 @@ public class MyStepdefs {
 
 
 
-    @Тогда("^ищем комедии снятые в \"([^\"]*)\" с \"([^\"]*)\" по \"([^\"]*)\" рейтинг \"([^\"]*)\" ibm \"([^\"]*)\" рейтинг критиков \"([^\"]*)\" положительных рецензий от \"([^\"]*)\" до \"([^\"]*)\" Бюджет фильма от \"([^\"]*)\" до \"([^\"]*)\" миллионов \\$\\. Кассовые сборы от \"([^\"]*)\" млн \\$ в США$")
-    public void ищемКомедииСнятыеВСПоРейтингIbmРейтингКритиковПоложительныхРецензийОтДоБюджетФильмаОтДоМиллионов$КассовыеСборыОтМлн$ВСША(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8, String arg9, String arg10, String arg11) throws Throwable{
+    @РўРѕРіРґР°("^РёС‰РµРј РєРѕРјРµРґРёРё СЃРЅСЏС‚С‹Рµ РІ \"([^\"]*)\" СЃ \"([^\"]*)\" РїРѕ \"([^\"]*)\" СЂРµР№С‚РёРЅРі \"([^\"]*)\" ibm \"([^\"]*)\" СЂРµР№С‚РёРЅРі РєСЂРёС‚РёРєРѕРІ \"([^\"]*)\" РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹С… СЂРµС†РµРЅР·РёР№ РѕС‚ \"([^\"]*)\" РґРѕ \"([^\"]*)\" Р‘СЋРґР¶РµС‚ С„РёР»СЊРјР° РѕС‚ \"([^\"]*)\" РґРѕ \"([^\"]*)\" РјРёР»Р»РёРѕРЅРѕРІ \\$\\. РљР°СЃСЃРѕРІС‹Рµ СЃР±РѕСЂС‹ РѕС‚ \"([^\"]*)\" РјР»РЅ \\$ РІ РЎРЁРђ$")
+    public void РёС‰РµРјРљРѕРјРµРґРёРёРЎРЅСЏС‚С‹РµР’РЎРџРѕР РµР№С‚РёРЅРіIbmР РµР№С‚РёРЅРіРљСЂРёС‚РёРєРѕРІРџРѕР»РѕР¶РёС‚РµР»СЊРЅС‹С…Р РµС†РµРЅР·РёР№РћС‚Р”РѕР‘СЋРґР¶РµС‚Р¤РёР»СЊРјР°РћС‚Р”РѕРњРёР»Р»РёРѕРЅРѕРІ$РљР°СЃСЃРѕРІС‹РµРЎР±РѕСЂС‹РћС‚РњР»РЅ$Р’РЎРЁРђ(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8, String arg9, String arg10, String arg11) throws Throwable{
         WaitElementUtill.waitElement(driver, FilmsRating.country);
         WaitElementUtill.countryList(driver, arg1);
         WaitElementUtill.waitElement(driver, FilmsRating.genre);
-        WaitElementUtill.genreList(driver, "комедия");
+        WaitElementUtill.genreList(driver, "РєРѕРјРµРґРёСЏ");
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("var get = document.getElementsByClassName('narrow year_select_interval');\n" +
@@ -125,7 +124,7 @@ public class MyStepdefs {
                 "get[1].value = \"2000\";\n");
         WaitElementUtill.sendKeys(driver, FilmsRating.ratingFilmMin,arg4);
         WaitElementUtill.sendKeys(driver, FilmsRating.IMDbMin,arg5);
-        WaitElementUtill.sendKeys(driver, FilmsRating.movieСriticMin,arg6);
+        WaitElementUtill.sendKeys(driver, FilmsRating.moveCriticMin,arg6);
         WaitElementUtill.sendKeys(driver, FilmsRating.revieProcentMax,arg8);
         WaitElementUtill.sendKeys(driver, FilmsRating.revieProcentMin,arg7);
         js.executeScript("var get = document.getElementById('min_vote');\n" +
@@ -136,14 +135,14 @@ public class MyStepdefs {
                 " get[3].value = '100';"+
                 "get[4].value = '25';");
 
-//потом использую
+//РїРѕС‚РѕРј РёСЃРїРѕР»СЊР·СѓСЋ
 //        WaitElementUtill.waitElement(driver,FilmsRating.searchButton);
 
     }
 
 
-    @Тогда("^Проверка на количество фильмов \"([^\"]*)\"$")
-    public void проверкаНаКоличествоФильмов(String arg1) throws Throwable {
+    @РўРѕРіРґР°("^РџСЂРѕРІРµСЂРєР° РЅР° РєРѕР»РёС‡РµСЃС‚РІРѕ С„РёР»СЊРјРѕРІ \"([^\"]*)\"$")
+    public void РїСЂРѕРІРµСЂРєР°РќР°РљРѕР»РёС‡РµСЃС‚РІРѕР¤РёР»СЊРјРѕРІ(String arg1) throws Throwable {
 
         WebElement  element = (new WebDriverWait(driver, 4, 1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@onclick,'navigator.loadResult()')]")));
         String str = element.getText();
@@ -158,8 +157,8 @@ public class MyStepdefs {
     }
 
 
-    @Тогда("^проверяем пользователя$")
-    public void проверяемПользователя() throws Throwable {
+    @РўРѕРіРґР°("^РїСЂРѕРІРµСЂСЏРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ$")
+    public void РїСЂРѕРІРµСЂСЏРµРјРџРѕР»СЊР·РѕРІР°С‚РµР»СЏ() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         String text;
         MainPage mainPage = new MainPage();
@@ -167,20 +166,20 @@ public class MyStepdefs {
         element.click();
         text = driver.findElement(mainPage.userName).getText();
         if(text.equals("senckoya")){
-            System.out.println("Пользователь вошел");
+            System.out.println("РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІРѕС€РµР»");
         }
     }
 
 
-    @Тогда("^ищем \"([^\"]*)\" снятый \"([^\"]*)\" с \"([^\"]*)\" по \"([^\"]*)\"$")
-    public void ищемСнятыйСПо(String arg1, String arg2, String arg3, String arg4) throws Throwable {
+    @РўРѕРіРґР°("^РёС‰РµРј \"([^\"]*)\" СЃРЅСЏС‚С‹Р№ \"([^\"]*)\" СЃ \"([^\"]*)\" РїРѕ \"([^\"]*)\"$")
+    public void РёС‰РµРјРЎРЅСЏС‚С‹Р№РЎРџРѕ(String arg1, String arg2, String arg3, String arg4) throws Throwable {
         WebElement element = (new WebDriverWait(driver,1,1000))
                 .until(ExpectedConditions.elementToBeClickable(SearchFilms.contentFind));
         element.click();
         WaitElementUtill.waitElement(driver,SearchFilms.selected);
-        WaitElementUtill.selectElement(driver, "фильм");
+        WaitElementUtill.selectElement(driver, "С„РёР»СЊРј");
         WaitElementUtill.waitElement(driver,SearchFilms.country);
-        WaitElementUtill.selectElement(driver, "США");
+        WaitElementUtill.selectElement(driver, "РЎРЁРђ");
         WaitElementUtill.waitElement(driver,SearchFilms.fromYear);
         WaitElementUtill.selectElement(driver, "2000");
         WaitElementUtill.waitElement(driver,SearchFilms.toYear);
@@ -194,18 +193,18 @@ public class MyStepdefs {
     }
 
 
-    @Тогда("^перехоим в разддел навигатор фильмов$")
-    public void перехоимВРаздделНавигаторФильмов() throws Throwable {
+    @РўРѕРіРґР°("^РїРµСЂРµС…РѕРёРј РІ СЂР°Р·РґРґРµР» РЅР°РІРёРіР°С‚РѕСЂ С„РёР»СЊРјРѕРІ$")
+    public void РїРµСЂРµС…РѕРёРјР’Р Р°Р·РґРґРµР»РќР°РІРёРіР°С‚РѕСЂР¤РёР»СЊРјРѕРІ() throws Throwable {
         MainPage mainPage = new MainPage();
         Actions action = new Actions(driver);
-        WebElement element = (new WebDriverWait(driver, 1, 1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//nav//a[.='Фильмы']")));
+        WebElement element = (new WebDriverWait(driver, 1, 1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//nav//a[.='Р¤РёР»СЊРјС‹']")));
         action.moveToElement(element).build().perform();
-        element = (new WebDriverWait(driver, 1, 1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='Навигатор по фильмам']")));
+        element = (new WebDriverWait(driver, 1, 1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='РќР°РІРёРіР°С‚РѕСЂ РїРѕ С„РёР»СЊРјР°Рј']")));
         element.click();
     }
 
-    @Тогда("^открываем расширенный поиск$")
-    public void открываеРасширенныйПоиск() throws Throwable {
+    @РўРѕРіРґР°("^РѕС‚РєСЂС‹РІР°РµРј СЂР°СЃС€РёСЂРµРЅРЅС‹Р№ РїРѕРёСЃРє$")
+    public void РѕС‚РєСЂС‹РІР°РµР Р°СЃС€РёСЂРµРЅРЅС‹Р№РџРѕРёСЃРє() throws Throwable {
         MainPage mainPage = new MainPage();
         WebElement element = (new WebDriverWait(driver, 5, 1000)).until(ExpectedConditions.presenceOfElementLocated(MainPage.searchFilms));
         element.click();
@@ -213,8 +212,8 @@ public class MyStepdefs {
 
 
 
-    @Тогда("^проверим тайтл \"([^\"]*)\"$")
-    public void проверимТайтл(String arg1) throws Throwable {
+    @РўРѕРіРґР°("^РїСЂРѕРІРµСЂРёРј С‚Р°Р№С‚Р» \"([^\"]*)\"$")
+    public void РїСЂРѕРІРµСЂРёРјРўР°Р№С‚Р»(String arg1) throws Throwable {
         (new WebDriverWait(driver, 5, 1000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//head/title")));
         String element = driver.getTitle();
         System.out.println(element);
@@ -225,24 +224,24 @@ public class MyStepdefs {
 
 
 
-//старая версия проверки тайтла
-//    @Тогда("^Проверим тайтл Главная$")
-//    public void проверимТайтлГлавная() throws Throwable {
+//СЃС‚Р°СЂР°СЏ РІРµСЂСЃРёСЏ РїСЂРѕРІРµСЂРєРё С‚Р°Р№С‚Р»Р°
+//    @РўРѕРіРґР°("^РџСЂРѕРІРµСЂРёРј С‚Р°Р№С‚Р» Р“Р»Р°РІРЅР°СЏ$")
+//    public void РїСЂРѕРІРµСЂРёРјРўР°Р№С‚Р»Р“Р»Р°РІРЅР°СЏ() throws Throwable {
 //        (new WebDriverWait(driver, 5, 1000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//head/title")));
 //        String element = driver.getTitle();
 //        System.out.println(element);
-//        provTitle(element,"КиноПоиск — Все фильмы планеты");
+//        provTitle(element,"РљРёРЅРѕРџРѕРёСЃРє вЂ” Р’СЃРµ С„РёР»СЊРјС‹ РїР»Р°РЅРµС‚С‹");
 //    }
 
 
 
 
 
-    @Тогда("^логинимся на кинопоиске$")
-    @Step("логинимся на кинопоиске")
-    public void логинимсяНаКинопоиске() throws Throwable {
+    @РўРѕРіРґР°("^Р»РѕРіРёРЅРёРјСЃСЏ РЅР° РєРёРЅРѕРїРѕРёСЃРєРµ$")
+    @Step("Р»РѕРіРёРЅРёРјСЃСЏ РЅР° РєРёРЅРѕРїРѕРёСЃРєРµ")
+    public void Р»РѕРіРёРЅРёРјСЃСЏРќР°РљРёРЅРѕРїРѕРёСЃРєРµ() throws Throwable {
                 try {
-                    WebElement element = driver.findElement(By.xpath("//button[.='Войти']"));
+                    WebElement element = driver.findElement(By.xpath("//button[.='Р’РѕР№С‚Рё']"));
                     element.click();
                     Login login = new Login();
                     driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
