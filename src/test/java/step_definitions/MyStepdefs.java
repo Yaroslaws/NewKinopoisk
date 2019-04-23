@@ -135,8 +135,6 @@ public class MyStepdefs {
                 " get[3].value = '100';"+
                 "get[4].value = '25';");
 
-//потом использую
-//        WaitElementUtill.waitElement(driver,FilmsRating.searchButton);
 
     }
 
@@ -219,21 +217,6 @@ public class MyStepdefs {
         System.out.println(element);
         provTitle(element,arg1);
     }
-
-
-
-
-
-//старая версия проверки тайтла
-//    @Тогда("^Проверим тайтл Главная$")
-//    public void проверимТайтлГлавная() throws Throwable {
-//        (new WebDriverWait(driver, 5, 1000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//head/title")));
-//        String element = driver.getTitle();
-//        System.out.println(element);
-//        provTitle(element,"КиноПоиск — Все фильмы планеты");
-//    }
-
-
 
 
 
