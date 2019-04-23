@@ -7,7 +7,6 @@ import cucumber.api.java.Before;
 import cucumber.api.java.ru.Дано;
 import cucumber.api.java.ru.То;
 import cucumber.api.java.ru.Тогда;
-import hooks.Hooks;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -33,7 +32,7 @@ import utils.WaitElementUtill;
 
 import static pages.MainPage.provTitle;
 
-public class MyStepdefs extends Hooks {
+public class MyStepdefs  {
     public static WebDriver driver;
 
     @Before("@withdrawal")

@@ -15,7 +15,6 @@ import org.junit.runner.RunWith;
             tags = "@withdrawal",
             snippets = SnippetType.CAMELCASE
 
-
 //            plugin = {
 //                    "com.github.kirlionik.cucumberallure.AllureReporter"
 //            }
