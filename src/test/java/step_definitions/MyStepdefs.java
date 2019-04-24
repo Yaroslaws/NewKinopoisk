@@ -1,6 +1,7 @@
 package step_definitions;
 
 
+
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -12,12 +13,16 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Test;
+
+import org.testng.ITestResult;
 import pages.Login;
 
 import pages.FilmsRating;
 import pages.MainPage;
 import pages.SearchFilms;
+
+
+import ru.yandex.qatools.allure.annotations.Attachment;
 import ru.yandex.qatools.allure.annotations.Step;
 import utils.ChromeDriverUtil;
 
@@ -31,26 +36,31 @@ import utils.WaitElementUtill;
 
 
 import static pages.MainPage.provTitle;
+import static utils.WaitElementUtill.takeScreenShot;
 
 public class MyStepdefs  {
     public static WebDriver driver;
 
+
+
     @Before("@withdrawal")
     public void prepareData() {
         //подготовить данные
+
         System.out.println("This will run");
     }
 
+
+
+
     @After("@withdrawal")
     public void clearData(Scenario scenario) {
-        if(scenario.isFailed())
-        {
-            //TAKE SCREENSHOT
-            System.out.println("Nope");
-        }
-
+//        takeScreenShot(driver);
         driver.close();
+
+
     }
+
 
 
     @Дано("^пользователь открывает сайт \"([^\"]*)\"$")
@@ -58,6 +68,7 @@ public class MyStepdefs  {
         driver = ChromeDriverUtil.startCromeDriver();
         driver.get(arg1);
     }
+
 
     @Тогда("^выход из аккаунта$")
     public void выходИзАккаунта() throws Throwable {
@@ -78,10 +89,8 @@ public class MyStepdefs  {
 
     @То("^Проверить, что в результатах поиска отображен массив фильмов снятых в \"([^\"]*)\" в жанре \"([^\"]*)\" с рейтингом  более \"([^\"]*)\"  и рейтингом IMDb более \"([^\"]*)\"$")
     public void проверитьЧтоВРезультатахПоискаОтображенМассивФильмовСнятыхВВЖанреСРейтингомБолееИРейтингомIMDbБолее(String arg1, String arg2, String arg3, String arg4) throws Throwable {
-        By info = By.xpath("//div[@id = 'itemList']/div[4]//div[@class = 'info']/span[@class = 'gray_text'][1]");
-        By reating = By.xpath("//div[@id = 'itemList']//div[@class = 'numVote  ratingGreenBG']/span");
-        By imdb = By.xpath("//div[@id = 'itemList']//div[@class = 'imdb']");
         int i=1;
+
         while(i<5) {
 
             String infoFilm = (new WebDriverWait(driver, 4, 1000))
@@ -174,9 +183,12 @@ public class MyStepdefs  {
             num = matcher.group();
         }
         Assert.assertEquals(num, arg1);
+
+
     }
 
 
+    @Step("проверка на конкретного пользователя")
     @Тогда("^проверяем пользователя$")
     public void проверяемПользователя() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
@@ -187,6 +199,7 @@ public class MyStepdefs  {
         text = driver.findElement(mainPage.userName).getText();
         if(text.equals("senckoya")){
             System.out.println("Пользователь вошел");
+            takeScreenShot(driver);
         }
     }
 
@@ -205,11 +218,6 @@ public class MyStepdefs  {
         WaitElementUtill.waitElement(driver,SearchFilms.toYear);
         WaitElementUtill.selectElement(driver, "1998");
         WaitElementUtill.waitElement(driver,SearchFilms.buttonSearch);
-
-
-
-
-
     }
 
 
@@ -259,7 +267,9 @@ public class MyStepdefs  {
                     System.out.println(element.isDisplayed());
                     element.sendKeys("as009007");
                     element = driver.findElement(login.buttonEnter);
+
                     element.click();
+
 
                 }catch (TimeoutException e){
                     System.out.println(driver.getCurrentUrl());

@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 
+
 public class FilmsRating {
 
     public static By country = By.xpath("//div[@id = 'countryListTitle']");
@@ -13,5 +14,4 @@ public class FilmsRating {
     public static By revieProcentMax = By.xpath("//input[@id = 'review_procent_max']");
     public static By budgetMin = By.xpath("//select[contains(@name,'[budget][min]')]");
     public static By showFilmButton = By.xpath("//input[@value = 'поиск']");
-
 }

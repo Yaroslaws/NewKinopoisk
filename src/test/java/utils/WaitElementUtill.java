@@ -1,15 +1,20 @@
 package utils;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.yandex.qatools.allure.annotations.Attachment;
 
 public class WaitElementUtill {
     //public static WebDriver driver = ChromeDriverUtil.startCromeDriver();
     public static WebElement element;
     public  static WebElement elementCopy;
+
+
+    @Attachment(value = "ScreenShot", type = "image/png")
+    public static byte[] takeScreenShot(WebDriver driver) {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
 
 
 
@@ -22,7 +27,7 @@ public class WaitElementUtill {
         }
         catch (Exception e)
         {
-            System.out.println("Не нашел локатор" + locator);
+            System.out.println("РќРµ РЅР°С€РµР» Р»РѕРєР°С‚РѕСЂ" + locator);
         }
         return element;
     }
@@ -35,7 +40,7 @@ public class WaitElementUtill {
         }
         catch (Exception e)
         {
-            System.out.println("Не нашел локатор" + locator);
+            System.out.println("РќРµ РЅР°С€РµР» Р»РѕРєР°С‚РѕСЂ" + locator);
         }
         return element;
     }
@@ -51,7 +56,7 @@ public class WaitElementUtill {
         }
         catch (Exception e)
         {
-            System.out.println("Не нашел локатор" + text);
+            System.out.println("РќРµ РЅР°С€РµР» Р»РѕРєР°С‚РѕСЂ" + text);
         }
     }
 
@@ -68,11 +73,11 @@ public class WaitElementUtill {
 
         }
         catch (NullPointerException ex){
-            System.out.println("Не нашел локатор" + locator + "/option[.='" + text + "']");
+            System.out.println("РќРµ РЅР°С€РµР» Р»РѕРєР°С‚РѕСЂ" + locator + "/option[.='" + text + "']");
         }
         catch (Exception e)
         {
-            System.out.println("Другая ошибка");
+            System.out.println("Р”СЂСѓРіР°СЏ РѕС€РёР±РєР°");
             e.printStackTrace();
         }
     }
@@ -85,7 +90,7 @@ public class WaitElementUtill {
         }
         catch (Exception e)
         {
-            System.out.println("Не нашел локатор");
+            System.out.println("РќРµ РЅР°С€РµР» Р»РѕРєР°С‚РѕСЂ");
         }
     }
 
@@ -98,7 +103,7 @@ public class WaitElementUtill {
         }
         catch (Exception e)
         {
-            System.out.println("Не нашел локатор" + text);
+            System.out.println("РќРµ РЅР°С€РµР» Р»РѕРєР°С‚РѕСЂ" + text);
         }
     }
 
@@ -110,7 +115,7 @@ public class WaitElementUtill {
         }
         catch (Exception e)
         {
-            System.out.println("Не нашел локатор" + text);
+            System.out.println("РќРµ РЅР°С€РµР» Р»РѕРєР°С‚РѕСЂ" + text);
         }
     }
 
