@@ -55,7 +55,9 @@ public class MyStepdefs  {
 
     @After("@withdrawal")
     public void clearData(Scenario scenario) {
-//        takeScreenShot(driver);
+        if (scenario.isFailed()) {
+            takeScreenShot(driver);
+        }
         driver.close();
 
 
@@ -199,7 +201,6 @@ public class MyStepdefs  {
         text = driver.findElement(mainPage.userName).getText();
         if(text.equals("senckoya")){
             System.out.println("Пользователь вошел");
-            takeScreenShot(driver);
         }
     }
 
@@ -254,6 +255,7 @@ public class MyStepdefs  {
     @Step("логинимся на кинопоиске")
     public void логинимсяНаКинопоиске() throws Throwable {
                 try {
+
                     WebElement element = driver.findElement(By.xpath("//button[.='Войти']"));
                     element.click();
                     Login login = new Login();
