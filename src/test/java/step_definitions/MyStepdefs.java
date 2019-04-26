@@ -2,6 +2,7 @@ package step_definitions;
 
 
 
+import cucumber.api.DataTable;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -27,6 +28,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 import utils.ChromeDriverUtil;
 
 
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -58,7 +61,7 @@ public class MyStepdefs  {
         if (scenario.isFailed()) {
             takeScreenShot(driver);
         }
-        driver.close();
+//        driver.close();
 
 
     }
@@ -93,7 +96,7 @@ public class MyStepdefs  {
     public void проверитьЧтоВРезультатахПоискаОтображенМассивФильмовСнятыхВВЖанреСРейтингомБолееИРейтингомIMDbБолее(String arg1, String arg2, String arg3, String arg4) throws Throwable {
         int i=1;
 
-        while(i<5) {
+        while(i<4) {
 
             String infoFilm = (new WebDriverWait(driver, 4, 1000))
                     .until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id = 'itemList']/div["+i+"]//div[@class = 'info']/span[@class = 'gray_text'][1]"))).getText();
@@ -144,10 +147,16 @@ public class MyStepdefs  {
 
 
 
-    @Тогда("^ищем комедии снятые в \"([^\"]*)\" с \"([^\"]*)\" по \"([^\"]*)\" рейтинг \"([^\"]*)\" ibm \"([^\"]*)\" рейтинг критиков \"([^\"]*)\" положительных рецензий от \"([^\"]*)\" до \"([^\"]*)\" Бюджет фильма от \"([^\"]*)\" до \"([^\"]*)\" миллионов \\$\\. Кассовые сборы от \"([^\"]*)\" млн \\$ в США$")
-    public void ищемКомедииСнятыеВСПоРейтингIbmРейтингКритиковПоложительныхРецензийОтДоБюджетФильмаОтДоМиллионов$КассовыеСборыОтМлн$ВСША(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8, String arg9, String arg10, String arg11) throws Throwable{
+    @Тогда("^ищем по параметрам$")
+    public void ищемПоПараметрам(DataTable arg1) throws Throwable {
+
+
+
+        String key, value = "";
+        List<Map<String, String>> table = arg1.asMaps(String.class, String.class);
+
         WaitElementUtill.waitElement(driver, FilmsRating.country);
-        WaitElementUtill.countryList(driver, arg1);
+        WaitElementUtill.countryList(driver, table.get(1).get("col2"));
         WaitElementUtill.waitElement(driver, FilmsRating.genre);
         WaitElementUtill.genreList(driver, "комедия");
 
@@ -155,15 +164,15 @@ public class MyStepdefs  {
         js.executeScript("var get = document.getElementsByClassName('narrow year_select_interval');\n" +
                 "get[0].value = \"1998\";\n" +
                 "get[1].value = \"2000\";\n");
-        WaitElementUtill.sendKeys(driver, FilmsRating.ratingFilmMin,arg4);
-        WaitElementUtill.sendKeys(driver, FilmsRating.IMDbMin,arg5);
-        WaitElementUtill.sendKeys(driver, FilmsRating.moveCriticMin,arg6);
-        WaitElementUtill.sendKeys(driver, FilmsRating.revieProcentMax,arg8);
-        WaitElementUtill.sendKeys(driver, FilmsRating.revieProcentMin,arg7);
+        WaitElementUtill.sendKeys(driver, FilmsRating.ratingFilmMin,table.get(4).get("col2"));
+        WaitElementUtill.sendKeys(driver, FilmsRating.IMDbMin,table.get(5).get("col2"));
+        WaitElementUtill.sendKeys(driver, FilmsRating.moveCriticMin,table.get(6).get("col2"));
+        WaitElementUtill.sendKeys(driver, FilmsRating.revieProcentMax,"100");
+        WaitElementUtill.sendKeys(driver, FilmsRating.revieProcentMin,table.get(8).get("col2"));
         js.executeScript("var get = document.getElementById('min_vote');\n" +
                 "get.value =\"2000\";");
         WaitElementUtill.waitElement(driver,FilmsRating.budgetMin);
-        WaitElementUtill.selectElement(driver,arg9);
+        WaitElementUtill.selectElement(driver,table.get(9).get("col2"));
         js.executeScript("var get = document.getElementsByClassName('narrow');\n" +
                 " get[3].value = '100';"+
                 "get[4].value = '25';");

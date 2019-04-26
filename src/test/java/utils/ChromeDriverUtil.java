@@ -13,7 +13,7 @@ public class ChromeDriverUtil {
         try {
 
             System.setProperty("webdriver.chrome.driver",
-                    "C:\\chromedriver.exe");
+                    "C:\\Users\\ysenko\\IdeaProjects\\NewKinopoisk\\chromedriver.exe");
             driver = new ChromeDriver();
             driver.manage().window().maximize();
             return driver;
