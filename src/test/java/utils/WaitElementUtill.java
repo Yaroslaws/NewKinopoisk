@@ -8,7 +8,7 @@ import ru.yandex.qatools.allure.annotations.Attachment;
 public class WaitElementUtill {
     //public static WebDriver driver = ChromeDriverUtil.startCromeDriver();
     public static WebElement element;
-    public  static WebElement elementCopy;
+
 
 
     @Attachment(value = "ScreenShot", type = "image/png")
