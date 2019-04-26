@@ -162,20 +162,25 @@ public class MyStepdefs  {
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("var get = document.getElementsByClassName('narrow year_select_interval');\n" +
-                "get[0].value = \"1998\";\n" +
-                "get[1].value = \"2000\";\n");
+                String.format("get[0].value = \"%s\";", table.get(2).get("col2")) +
+                String.format("get[1].value = \"%s\";", table.get(3).get("col2")));
         WaitElementUtill.sendKeys(driver, FilmsRating.ratingFilmMin,table.get(4).get("col2"));
         WaitElementUtill.sendKeys(driver, FilmsRating.IMDbMin,table.get(5).get("col2"));
         WaitElementUtill.sendKeys(driver, FilmsRating.moveCriticMin,table.get(6).get("col2"));
         WaitElementUtill.sendKeys(driver, FilmsRating.revieProcentMax,"100");
         WaitElementUtill.sendKeys(driver, FilmsRating.revieProcentMin,table.get(8).get("col2"));
-        js.executeScript("var get = document.getElementById('min_vote');\n" +
-                "get.value =\"2000\";");
+        js.executeScript("var get = document.getElementById('min_vote');\n" + "get.value =\"2000\";");
         WaitElementUtill.waitElement(driver,FilmsRating.budgetMin);
         WaitElementUtill.selectElement(driver,table.get(9).get("col2"));
+
+
+
         js.executeScript("var get = document.getElementsByClassName('narrow');\n" +
-                " get[3].value = '100';"+
-                "get[4].value = '25';");
+                String.format("get[3].value = \"%s\";", table.get(10).get("col2"))+
+                String.format("get[4].value = \"%s\";", table.get(11).get("col2")));
+
+
+
 
 
     }
