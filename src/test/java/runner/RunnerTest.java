@@ -13,10 +13,8 @@ import org.junit.runner.RunWith;
             tags = "@withdrawal",
             snippets = SnippetType.CAMELCASE
 
-
     )
 
-    public class RunnerTest {
-        }
+    public class RunnerTest {}
 
 

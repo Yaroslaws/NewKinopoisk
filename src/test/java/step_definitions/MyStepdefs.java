@@ -61,7 +61,7 @@ public class MyStepdefs  {
         if (scenario.isFailed()) {
             takeScreenShot(driver);
         }
-//        driver.close();
+        driver.close();
 
 
     }
